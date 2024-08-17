@@ -35,11 +35,12 @@ class Deployer
     $ftp->login($config['username'], $config['password'], function ($e) {
       echo $e . "\n";
     });
+    $remote_dir = $config['default_remote_directory'];
 
     $i = 1;
     foreach ($files as $file) {
       if (!in_array($file, $config['excluded_files'])) {
-        $ftp->upload($file, '.', function ($e) use ($i) {
+        $ftp->upload($file, $remote_dir, function ($e) use ($i) {
           echo $i . " " . $e;
         }, function ($e) use ($green, $reset) {
           echo " [{$green}$e{$reset}]\n";
