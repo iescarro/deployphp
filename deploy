@@ -1,6 +1,6 @@
 <?php
 
-require_once('Deployer.php');
+require_once('src\Deployer.php');
 
 if ($argc < 1) {
   echo "Usage: php deploy <deploy.json>\n\n";
