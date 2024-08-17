@@ -3,7 +3,7 @@
     "description": "Simple PHP deployer for git differences between hashes.",
     "autoload": {
         "psr-4": {
-            "Iescarro\\Deployer\\": "src/"
+            "DeployPHP\\": "src/"
         }
     },
     "authors": [
