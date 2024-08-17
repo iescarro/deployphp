@@ -27,12 +27,15 @@ class Deployer
 
     $config = $this->get_config($config_file);
 
-    $ftp = new Ftp($config['host']);
-    $ftp->login($config['username'], $config['password']);
-
     $files = $this->get_diff_files($config['source_hash'], $config['target_hash']);
 
-    echo count($files) . " files changed.\n";
+    echo count($files) . " files changed\n";
+
+    $ftp = new Ftp($config['host']);
+    $ftp->login($config['username'], $config['password'], function ($e) {
+      echo $e . "\n";
+    });
+
     $i = 1;
     foreach ($files as $file) {
       if (!in_array($file, $config['excluded_files'])) {
@@ -78,18 +81,21 @@ class Deployer
 class Ftp
 {
   var $conn;
+  var $host;
   var $username;
   var $password;
 
   function __construct($host)
   {
+    $this->host = $host;
     $this->conn = ftp_connect($host);
   }
 
-  function login($username, $password)
+  function login($username, $password, $log)
   {
     $this->username = $username;
     $this->password = $password;
+    call_user_func($log, "Login as {$username}@{$this->host}");
     $result = ftp_login($this->conn, $username, $password);
     ftp_pasv($this->conn, true);
   }
