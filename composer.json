@@ -12,5 +12,6 @@
             "email": "ian.escarro@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {}
 }
