@@ -1,0 +1,16 @@
+{
+    "name": "iescarro/deployphp",
+    "description": "Simple PHP deployer for git differences between hashes.",
+    "autoload": {
+        "psr-4": {
+            "Iescarro\\Deployer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ian",
+            "email": "ian.escarro@gmail.com"
+        }
+    ],
+    "require": {}
+}
