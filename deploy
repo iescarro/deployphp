@@ -7,7 +7,7 @@ if ($argc < 1) {
   exit(1);
 }
 
-$config_file = $args[1] ?? "deploy.json";
+$config_file = $argv[1] ?? "deploy.json";
 
 $deployer = new DeployPHP\Deployer();
 $deployer->run($config_file);
